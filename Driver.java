@@ -7,7 +7,7 @@ import java.util.Scanner;
  * http://stackoverflow.com/questions/17848207/making-a-lexical-analyzer
  * 
  * This code has been re-fashioned from a generous open source publication, we have learned it its intricacies, 
- * and we have implemented it for our submission for this project
+ * and we have implemented it for our submission in this project
  * 
  * @author Robert Seedorf, Bill Clark
  *
