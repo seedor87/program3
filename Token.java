@@ -1,7 +1,5 @@
 package program3;
 
-import program3.Lexer.Type;
-
 /**
  * This code has been adapted from a source on the Internet to be described, Found at:
  * http://stackoverflow.com/questions/17848207/making-a-lexical-analyzer
@@ -13,16 +11,21 @@ import program3.Lexer.Type;
  *
  */
 public class Token {
-	public final Type t;
-    public final String c; // contents mainly for atom tokens
-    // could have column and line number fields too, for reporting errors later
+	
+	public final Type t;		// category of token, useful in conversion to executable form
+    public final String c; 		// literal value of token
+    
     public Token(Type t, String c) {
         this.t = t;
         this.c = c;
     }
+    
     public String toString() {
         if(t == Type.ATOM) {
             return "ATOM<" + c + ">";
+        }
+        if(t == Type.OPERATOR) {
+        	return "OPERATOR<" + c + ">";
         }
         return t.toString();
     }
