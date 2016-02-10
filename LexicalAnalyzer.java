@@ -2,6 +2,7 @@ package program3;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * This code has been adapted from a source on the Internet to be described, Found at:
@@ -16,6 +17,12 @@ import java.util.ArrayList;
  *
  */
 public class LexicalAnalyzer {
+	
+	private ArrayList<String> reserveSymbols = new ArrayList<String>(); 
+	
+	public LexicalAnalyzer() {
+		reserveSymbols = new ArrayList<String>(Arrays.asList("(", ")", "{", "}", "+", "-", "*", "/", "%", "=", "\"", "'", "#", ";"));
+	}
 
    /**
     * returns String of token value for printing
@@ -26,7 +33,7 @@ public class LexicalAnalyzer {
     public static String getTokenString(String s, int i) {
         int j = i;
         while(j < s.length()) {
-            if(Character.isLetter(s.charAt(j))) {
+            if(Character.isLetter(s.charAt(j)) || Character.isDigit(s.charAt(j)) || s.charAt(j) == '.') {
                 j++;
             } else {
                 return s.substring(i, j);
@@ -46,6 +53,10 @@ public class LexicalAnalyzer {
                 return new Token(Type.LPAREN, "(");
             case ')':
                 return new Token(Type.RPAREN, ")");
+            case '{':
+            	return new Token(Type.LCURL, "{");
+            case '}':
+            	return new Token(Type.RCURL, "}");
             case '+':
             	return new Token(Type.OPERATOR, "+");
             case '-':
@@ -56,10 +67,20 @@ public class LexicalAnalyzer {
             	return new Token(Type.OPERATOR, "/");
             case '%':
             	return new Token(Type.OPERATOR, "%");
+            case '^':
+            	return new Token(Type.OPERATOR, "^");
+            case '=':
+            	return new Token(Type.ASSIGNMENT, "=");
+            case '\'':
+            	return new Token(Type.SQUOTE, "'");
+            case '"':
+            	return new Token(Type.DQUOTE, "\"");
+            case '#':
+            	return new Token(Type.COMMENT, "#");
+            case ';':
+            	return new Token(Type.SEMICOLON, ";");
             default:
-                if(Character.isWhitespace(input.charAt(i))) {
-                } 
-                else {
+                if(!Character.isWhitespace(input.charAt(i))) {
                     String atom = getTokenString(input, i);
                     i += atom.length();
                     return new Token(Type.ATOM, atom);
@@ -76,9 +97,11 @@ public class LexicalAnalyzer {
      * @return String with necessary pre-processing enacted upon it.
      */
     public String preprocess(String s) {
-    	/*
-    	 * TODO
-    	 */
+    	for(String str: reserveSymbols) {
+    		s = s.replace(str, " " + str + " ");
+    	}
+    	s = s.replaceAll("\\s+", " ");
+    	s = s.trim();
     	return s;
     }
     
@@ -88,6 +111,7 @@ public class LexicalAnalyzer {
      * @return - List of tokens of elements of input
      */
     public List<Token> analyze(String input) {
+    	input = preprocess(input);
         String[] split = input.split(" ");
         List<Token> result = new ArrayList<Token>();
         for(String s: split) {

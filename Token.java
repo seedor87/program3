@@ -7,6 +7,8 @@ package program3;
  * This code has been re-fashioned from a generous open source publication, we have learned it its intricacies, 
  * and we have implemented it for our submission for this project
  * 
+ * This class represents the instances of tokens being generated after analyzation in this compilation process
+ * 
  * @author Robert Seedorf, Bill Clark
  *
  */

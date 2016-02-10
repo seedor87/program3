@@ -17,11 +17,9 @@ import java.util.Scanner;
 public class Driver {
 
 	public static void main(String[] args) {
-		
 		LexicalAnalyzer lex = new LexicalAnalyzer();
-		boolean quit = false;
 		Scanner sc = new Scanner(System.in);
-		while(!quit) {
+		while(true) {
 			System.out.println("\nEnter the string to be lexically analyzed: (enter a blank String to quit)");
 			String input = sc.nextLine();
 	        if(input.equals("")) {
