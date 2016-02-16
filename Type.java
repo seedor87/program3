@@ -11,18 +11,25 @@ public enum Type {
     /*
      * Key:
      * 
+     * NULL_STRING -	""
      * LPAREN - 		(
      * RPAREN - 		)
      * LCURL -			{
      * RCURL -			}
-     * OPERATOR - 		+ - * / % ^
-     * ASSIGNEMENT - 	=
+     * LSQUARE -		[
+     * RSQUARE -		]
+     * OPERATOR - 		+ - * / % = < > ^ & |
      * SQUOTE - 		'
      * DQUOTE - 		"
      * COMMENT -		#
      * SEMICOLON -		;
-     * ATOM -			a-z | A-Z | 0-9
+     * COLON -			:
+     * PERIOD -			.
+     * COMMA			,
+     * ALT_OP - 		?
+     * ATOM -			all others (a-z | A-Z | 0-9)
      * 
      */
-    LPAREN, RPAREN, OPERATOR, ATOM, ASSIGNMENT, SQUOTE, DQUOTE, COMMENT, SEMICOLON, LCURL, RCURL;
+    NULL_STRING, LPAREN, RPAREN, OPERATOR, ATOM, SQUOTE, DQUOTE, COMMENT, SEMICOLON, LCURL, RCURL, 
+    ALT_OP, LSQUARE, RSQUARE, FSLASH, COLON, PERIOD, COMMA;
 }

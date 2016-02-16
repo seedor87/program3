@@ -26,8 +26,14 @@ public class Token {
         if(t == Type.ATOM) {
             return "ATOM<" + c + ">";
         }
+        if(t == Type.COMMENT) {
+        	return "COMMENT<" + c + ">";
+        }
         if(t == Type.OPERATOR) {
         	return "OPERATOR<" + c + ">";
+        }
+        if(t == Type.ALT_OP) {
+        	return "ALT_OPERATOR<" + c + ">";
         }
         return t.toString();
     }
